@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>教育系系學會意見信箱表單</title>
+    <link rel="stylesheet" href="styles.css"> <!-- 你的CSS文件 -->
+<style>
+* {
+  box-sizing: border-box;
+}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 30px;
+  display: inline-block;
+}
+
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+input[type=submit]:hover {
+  background-color: #a6fbff;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+input[type=reset] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+input[type=reset]:hover {
+  background-color: #a6fbff;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.hcontainer {
+  border-radius: 0px;
+  background-color: #e4ffcf;
+  padding: 30px;
+  margin: 20px;
+}
+
+.container {
+  border-radius: 20px;
+  background-color: #f2f2f2;
+  padding: 30px;
+  margin: 20px;
+}
+
+.col-15 {
+  float: left;
+  width: 15%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-15, .col-75, input[type=submit],input[type=reset] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+
+h2 {
+  text-align: center;
+  text-transform: uppercase;
+  color: #4CAF50;
+  text-shadow: 2px 2px 5px yellowgreen;
+  font-size: 40px
+}
+p {
+  text-align: center;
+  font-size: 20px
+}
+</style>
+</head>
+<body>
+
+<div class="hcontainer">
+  <form action="/action_page.php">
+  <div class="row">
+  <h2>意見信箱</h2>
+  <p>請詳閱「意見信箱使用說明」後，再填寫表單，提交表單時視同已閱讀說明。</p>
+  </div>
+  </form>
+  </div>
+
+<div class="container">
+  <form id="feedbackForm" action="/action_page.php" method="post">
+  <div class="row">
+    <div class="col-15">
+      <label for="name">姓名</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="name" name="stname"required>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-15">
+      <label for="id">學號</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="id" name="stid">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-15">
+      <label for="mail">電子信箱</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="mail" name="stmail" placeholder="請輸入常用的電子信箱"required>
+      <span id="emailError" style="color:red; display:none;">😵‍💫請輸入有效的電子信箱，否則不予受理！😵‍💫</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-15">
+      <label for="type">信件分類</label>
+    </div>
+    <div class="col-75">
+      <select id="type" name="信件分類">
+        <option value="priase">我要讚美🥳</option>
+        <option value="advice">我要建議🤓</option>
+        <option value="complain">我要抱怨😩</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-15">
+      <label for="title">信件主旨</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="title" name="mailtitle">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-15">
+      <label for="content">信件內容</label>
+    </div>
+    <div class="col-75">
+      <textarea id="content" name="mailcontent" placeholder="寫些什麼吧..." style="height:200px"></textarea>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-15">
+      <label for="appendix">附件</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="appendix" name="mailappendix" placeholder="相關證明，如影像，無則免附。">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-15">
+      <label for="feedback">是否需要回覆</label>
+    </div>
+    <div class="col-75">
+      <select id="feedback" name="feedback">
+        <option value="yes">需要回覆😉</option>
+        <option value="no">不須回覆😶</option>
+      </select>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <input type="reset" value="我要重寫🫠">
+  </div>
+  <div class="row">
+    <input type="submit" value="我要提交👌">
+  </div>
+  </form>
+</div>
+
+<script>
+document.getElementById('mail').addEventListener('input', function() {
+  const mail = this.value;
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const emailError = document.getElementById('emailError');
+
+  if (!emailPattern.test(mail)) {
+    emailError.style.display = 'inline';
+  } else {
+    emailError.style.display = 'none';
+  }
+});
+document.getElementById('feedbackForm').addEventListener('submit', function(event) {
+  event.preventDefault(); // 防止表單實際提交
+
+  // 獲取表單數據
+  const name = document.getElementById('name').value;
+  const id = document.getElementById('id').value;
+  const mail = document.getElementById('mail').value;
+  const type = document.getElementById('type').value;
+  const title = document.getElementById('title').value;
+  const content = document.getElementById('content').value;
+  const appendix = document.getElementById('appendix').value;
+  const feedback = document.getElementById('feedback').value;
+
+
+  // 模擬表單數據處理
+  console.log('姓名:', name);
+  console.log('學號:', id);
+  console.log('電子信箱:', mail);
+  console.log('信件分類:', type);
+  console.log('信件主旨:', title);
+  console.log('信件內容:', content);
+  console.log('附件:', appendix);
+  console.log('是否需要回覆:', feedback);
+
+  alert('表單已提交，請檢查控制台查看提交的數據。');
+});
+</script>
+</body>
+</html>
