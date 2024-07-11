@@ -28,11 +28,29 @@ app.post('/action_page.php', (req, res) => {
 });
 
 app.post('/submit-feedback', (req, res) => {
-    const { stname, stid, stmail, 信件分類, mailtitle, mailcontent, mailappendix, feedback } = req.body;
-    // 根據需要處理表單數據，這裡示例是將收到的數據打印到控制台
-    console.log(`收到來自 ${stname} (${stid}) 的意見反饋，信箱為 ${stmail}，主題為 ${mailtitle}`);
-    // 回應客戶端，可以是一個成功消息或者重定向到其他頁面
-    res.send('已收到意見反饋！');
+    const { stname, stid, stmail, mailtype, mailtitle, mailcontent, mailappendix, feedback } = req.body;
+    
+    // 創建新的資料庫模型實例
+    const newUser = new User({
+        name: stname,
+        studentId: stid,
+        email: stmail,
+        mailType: mailtype,
+        mailTitle: mailtitle,
+        mailContent: mailcontent,
+        mailAppendix: mailappendix,
+        feedback: feedback
+    });
+
+    // 將新使用者儲存到資料庫
+    newUser.save().then(user => {
+        console.log('User saved:', user);
+        res.send('已收到意見反饋！');
+    }).catch(error => {
+        console.error('Error saving user:', error);
+        res.status(500).send('儲存使用者時發生錯誤！');
+    });
+});
 
 app.listen(port, () => {
   console.log(`伺服器正在 http://localhost:${port} 運行`);
