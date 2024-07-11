@@ -37,3 +37,16 @@ app.post('/submit-feedback', (req, res) => {
 app.listen(port, () => {
   console.log(`伺服器正在 http://localhost:${port} 運行`);
 });
+
+const mongoose = require('mongoose');
+
+// 連接到MongoDB資料庫
+mongoose.connect('mongodb://localhost:27017/yourDBName', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(() => {
+  console.log('Successfully connected to MongoDB');
+}).catch((error) => {
+  console.error('Error connecting to MongoDB:', error);
+});
+
