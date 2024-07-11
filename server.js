@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const port = 3000;
+const port = 27017;
 
 // 解析 application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
