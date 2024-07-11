@@ -50,3 +50,17 @@ mongoose.connect('mongodb://localhost:27017/yourDBName', {
   console.error('Error connecting to MongoDB:', error);
 });
 
+const User = require('./path/to/userSchema');
+
+// 您可以開始使用User model進行資料庫操作了
+const newUser = new User({
+  name: 'LCChang',
+  email: 'a8578155@gmail.com',
+  password: 'mike0978'
+});
+
+newUser.save().then(user => {
+  console.log('User saved:', user);
+}).catch(error => {
+  console.error('Error saving user:', error);
+});
