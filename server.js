@@ -1,16 +1,24 @@
 const express = require('express');
-const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+
 const app = express();
 const port = 3000;
 
-// 解析 application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
+// 連接到MongoDB
+mongoose.connect('mongodb://localhost:27017/mydatabase', { useNewUrlParser: true, useUnifiedTopology: true });
 
-// 解析 application/json
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
 
-// 提供靜態文件（HTML, CSS 等）
-app.use(express.static('public'));
+app.post('/submit', (req, res) => {
+  const formData = req.body;
+  // 處理表單數據，例如儲存到資料庫
+  res.send('表單已接收');
+});
+
+app.listen(port, () => {
+  console.log(`伺服器運行於 http://localhost:${port}`);
+});
+
 
 // 處理表單提交的路由
 app.post('/action_page.php', (req, res) => {
